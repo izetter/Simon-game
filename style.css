@@ -1,0 +1,43 @@
+html {
+	--btn-width: 30vw;
+	--btn-height: var(--btn-width);
+	--btn-margin: .3vw;
+}
+
+#container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: calc( 50vh - var(--btn-height) - var(--btn-margin) ) auto 0 auto;
+	width: calc( 2 * var(--btn-width) + var(--btn-margin) + 1% );
+}
+
+.btn {
+	height: var(--btn-height);
+	width: var(--btn-width);
+	margin: var(--btn-margin);
+}
+
+#green {
+	background-color: green;
+}
+
+#red {
+	background-color: red;
+}
+
+#yellow {
+	background-color: yellow;
+}
+
+#blue {
+	background-color: blue;
+}
+
+/* Media query for desktop */
+
+@media screen and (min-width: 1367px) {
+	#red {
+		background-color: black;
+	}
+}
