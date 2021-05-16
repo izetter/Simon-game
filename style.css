@@ -1,15 +1,16 @@
 html {
-	--btn-width: 30vw;
+	--btn-width: min(30vw, 30vh);
 	--btn-height: var(--btn-width);
-	--btn-margin: .3vw;
+	--btn-margin: min(1.5vw, 1.5vh);
 }
 
 #container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin: calc( 50vh - var(--btn-height) - var(--btn-margin) ) auto 0 auto;
-	width: calc( 2 * var(--btn-width) + var(--btn-margin) + 1% );
+	margin: calc(50vh - var(--btn-height) - 2 * var(--btn-margin)) auto 0 auto;
+	width: calc(2 * var(--btn-width) + 4 * var(--btn-margin));
+	/* max-width: 90vh; */
 }
 
 .btn {
@@ -41,3 +42,12 @@ html {
 		background-color: black;
 	}
 }
+
+/* 
+MAYBE MAKE SQUARES A FIXED SIZE AND HAVE THEM ORDERED IN COLUMN WHEN ON VERTICAL MOBILE SCREEN (MEDIA QUERY FOR PORTRAIT ORIENTATION
+OR FOR WIDTH. [OR THE OTHER WAY AROUND CAUSE MOBILE FIRST])
+
+LATER, START SHOWING THEM IN REGULAR SQUARE GRID, THEN ANIMATE THEM ACCOMODIATING IN VERTICAL (For portriat)
+
+or maybe not
+*/
