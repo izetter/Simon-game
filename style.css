@@ -9,7 +9,7 @@ html {
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: calc(50vh - var(--btn-height) - 2 * var(--btn-margin)) auto 0 auto;
-	width: calc(2 * var(--btn-width) + 4 * var(--btn-margin));
+	width: calc(2 * var(--btn-width) + 8 * var(--btn-margin));
 	/* max-width: 90vh; */
 }
 
@@ -17,29 +17,46 @@ html {
 	height: var(--btn-height);
 	width: var(--btn-width);
 	margin: var(--btn-margin);
+	box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, .2);
 }
 
 #green {
-	background-color: green;
+	background-color: #00CC66;
 }
 
 #red {
-	background-color: red;
+	background-color: #BF0603;
 }
 
 #yellow {
-	background-color: yellow;
+	background-color: #F4D35E;
 }
 
 #blue {
-	background-color: blue;
+	background-color: #01BAEF;
 }
+
+.pressed {
+	box-shadow: 0 3px 4px 0 #DBEDF3;
+	/* transform: scale(1.01); */
+	transition: all .1s ease-in-out;
+	/* border: 2px solid #ffc600; */
+	/* box-shadow: inset 0 0 1rem #2c230094; */
+	opacity: 0.65;
+}
+
+
+
+
+
+
+
 
 /* Media query for desktop */
 
 @media screen and (min-width: 1367px) {
 	#red {
-		background-color: black;
+		/* background-color: black; */
 	}
 }
 
