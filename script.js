@@ -11,15 +11,22 @@ for (let i = 1; i <= 16; i++) {
 	sequence.push(colors[Math.floor(Math.random() * colors.length)]);
 }
 
-// for testing
-(function() {
-	console.log(sequence);
-})();
-
-
 for (let btn of btns) {
 	btn.addEventListener('click', (evt) => playSound(evt.currentTarget.id));
 }
+
+document.querySelector('button').addEventListener('click', () => playSequence(sequence))
+
+function playSequence(arr) {
+	console.log(sequence);
+	for (let i = 0; i < arr.length; i++) {
+		setTimeout(() => {
+			playSound(arr[i]);
+		}, i * 600);
+	}
+}
+
+
 
 function playSound(str) {
 
@@ -27,7 +34,6 @@ function playSound(str) {
 	let btn = document.querySelector(`#${str}`);
 	btn.classList.add('pressed');
 	setTimeout(() => btn.classList.remove('pressed'), 150);
-
 
 	// Sound playback
 	switch (str) {
