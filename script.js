@@ -5,38 +5,84 @@ const blue = new Audio('./Sound4.mp3');
 const errSound = new Audio('./error.wav');
 const colors = ['green', 'red', 'yellow', 'blue'];
 const btns = document.querySelectorAll('.btn');
+const userSequence = [];
 const sequence = [];
 
-for (let i = 1; i <= 16; i++) {
-	sequence.push(colors[Math.floor(Math.random() * colors.length)]);
-}
+let isGameInProgress = false;
+let level = 1;
+
+document.querySelector('button').addEventListener('click', () => startGame())
 
 for (let btn of btns) {
-	btn.addEventListener('click', (evt) => playSound(evt.currentTarget.id));
+	btn.addEventListener('click', (evt) => {
+		isGameInProgress ? gameOn(evt.currentTarget.id) : playSound(evt.currentTarget.id);
+	});
 }
 
-document.querySelector('button').addEventListener('click', () => playSequence(sequence))
+function startGame() {
+	// Initialize
+	level = 3;
+	isGameInProgress = true;
 
-function playSequence(arr) {
+	// Reset and populate the sequence array
+	sequence.length = 0;
+	for (let i = 1; i <= 3; i++) {
+		sequence.push(colors[Math.floor(Math.random() * colors.length)]);
+	}
 	console.log(sequence);
-	for (let i = 0; i < arr.length; i++) {
+
+	// Play first sound
+	setTimeout(() => {
+		playSound(sequence[0]);
+	}, 450);
+}
+
+function compare(arr1, arr2, n) {
+	for (let i = 0; i < n; i++) {
+		if (arr1[i] !== arr2[i]) {
+			console.log('arrays are NOT equal');
+			return;
+		}
+	}
+	console.log('arrays ARE equal');
+}
+
+const a = [1,2];
+const b = [1,2,3];
+
+function gameOn(color) {
+	console.log(color)
+
+
+
+	for (let i = 0; i < level; i++) {
 		setTimeout(() => {
-			playSound(arr[i]);
+			playSound(sequence[i])
 		}, i * 600);
 	}
+	// playSound(sequence[level]);
 }
 
 
+// function playSequence(arr) {
+// 	for (let i = 0; i < arr.length; i++) {
+// 		setTimeout(() => {
+// 			playSound(arr[i]);
+// 		}, i * 600);
+// 	}
+// }
 
-function playSound(str) {
+
+
+function playSound(color) {
 
 	// Button animation
-	let btn = document.querySelector(`#${str}`);
+	let btn = document.querySelector(`#${color}`);
 	btn.classList.add('pressed');
 	setTimeout(() => btn.classList.remove('pressed'), 150);
 
 	// Sound playback
-	switch (str) {
+	switch (color) {
 
 		case 'green': {
 			green.currentTime = 0;
@@ -61,5 +107,11 @@ function playSound(str) {
 			blue.play();
 			break;
 		}
+
+		default: {
+			errSound.currentTime = 0;
+			errSound.play();
+			break;
+		}
 	}
-} 
+}
