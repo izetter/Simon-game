@@ -7,9 +7,8 @@ const colors = ['green', 'red', 'yellow', 'blue'];
 const btns = document.querySelectorAll('.btn');
 const startGameBtn = document.querySelector('button');
 const sequence = [];
-const userSequence = [];
+const timeouts = [];
 const p = document.querySelector('p');
-const cp = document.querySelector('.counterp');
 let isGameInProgress = false;
 let counter = 0; 
 let level = 1;
@@ -27,32 +26,21 @@ function startGame() {
 	level = 1;
 	isGameInProgress = true;
 	startGameBtn.disabled = true;
-	p.classList.remove('grayed-out')
-	p.innerText = `${level}, ${counter}`;
+	p.classList.remove('grayed-out');
+	p.classList.remove('transparent');
+	p.innerText = level;
 
 	// Reset and populate the sequence array
 	sequence.length = 0;
 	for (let i = 1; i <= 10; i++) {
 		sequence.push(colors[Math.floor(Math.random() * colors.length)]);
 	}
-	console.log(sequence);
 
 	// Play first sound
 	setTimeout(() => {
 		playSound(sequence[0]);
 	}, 450);
 }
-
-// function compare(arr1, arr2, n) {
-// 	for (let i = 0; i < n; i++) {
-// 		if (arr1[i] !== arr2[i]) {
-// 			console.log('arrays are NOT equal');
-// 			return;
-// 		}
-// 	}
-// 	console.log('arrays ARE equal');
-// }
-
 
 function playSequence(scalar, timeout) {
 	// Store timeouts in an array for easy clearing
@@ -61,45 +49,36 @@ function playSequence(scalar, timeout) {
 	}, scalar * timeout));
 }
 
-const timeouts = [];
-
 function gameOn(color) {
-	p.innerText = `${level}, ${counter}`;
-	console.log(level, counter);
+	p.classList.remove('transparent')
+	p.innerText = level;
 	if (color === sequence[counter]) {
 		playSound(color);
 		counter++;
-		p.innerText = `${level}, ${counter}`;
-		console.log(level, counter);
+		// p.innerText = level;
 		if (counter === level) {
 			level++;
 			counter = 0;
-			p.innerText = `${level}, ${counter}`;
-			console.log(level, counter);
+			p.innerText = level;
 
 			// Outer setTimeout to add a little bit more delay at the start of the next sequence of sounds (to avoid user confusion)
 			setTimeout(() => {
 				for (let i = 1; i <= level; i++) {
 					playSequence(i, 500);
 				}
-			}, 425);
-
-			// console.log(timeouts);
-
-
+			}, 450);
 		}
 	} else {
 		errSound.play();
 		startGameBtn.disabled = false;
-		// p.classList.remove('transparent')
+		p.classList.remove('transparent')
 		p.classList.add('grayed-out')
 		isGameInProgress = false;
 		counter = 0;
 		for (let timeout of timeouts) {
 			clearTimeout(timeout);
 		}
-		p.innerText = `${level}, ${counter}`;
-		console.log(level, counter);
+		p.innerText = level;
 	}
 }
 	
