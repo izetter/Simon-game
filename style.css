@@ -24,8 +24,12 @@ p {
 	/* max-width: 90vh; */
 }
 
-.hidden {
+.transparent {
 	color: transparent;
+}
+
+.grayed-out {
+	color: gainsboro;
 }
 
 .btn {
