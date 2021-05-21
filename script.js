@@ -55,12 +55,12 @@ function startGame() {
 
 
 function playSequence(scalar, timeout) {
-	return setTimeout(() => {
+	timeouts.push(setTimeout(() => {
 		playSound(sequence[scalar - 1])
-	}, scalar * timeout);
+	}, scalar * timeout));
 }
 
-// const timeouts = [];
+const timeouts = [];
 
 function gameOn(color) {
 	p.innerText = `${level}, ${counter}`;
@@ -75,9 +75,16 @@ function gameOn(color) {
 			counter = 0;
 			p.innerText = `${level}, ${counter}`;
 			console.log(level, counter);
+
 			for (let i = 1; i <= level; i++) {
 				playSequence(i,600);
 			}
+			console.log(timeouts);
+
+			// for (let i = 1; i <= level; i++) {
+			// 	timeouts.push(playSequence(i,600));
+			// }
+
 
 			// Outer setTimeout to delay start of next sequence for a bit longer than the regular time between sequence sounds (avoid user confusion)
 			// setTimeout(() => {
@@ -85,6 +92,7 @@ function gameOn(color) {
 			// 		timeouts.push(playSequence(i,600));
 			// 	}
 			// }, 1000);
+
 		}
 	} else {
 		errSound.play();
@@ -93,9 +101,9 @@ function gameOn(color) {
 		p.classList.add('grayed-out')
 		isGameInProgress = false;
 		counter = 0;
-		// for (let timeout of timeouts) {
-		// 	clearTimeout(timeout);
-		// }
+		for (let timeout of timeouts) {
+			clearTimeout(timeout);
+		}
 		p.innerText = `${level}, ${counter}`;
 		console.log(level, counter);
 	}
