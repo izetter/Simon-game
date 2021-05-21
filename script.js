@@ -55,6 +55,7 @@ function startGame() {
 
 
 function playSequence(scalar, timeout) {
+	// Store timeouts in an array for easy clearing
 	timeouts.push(setTimeout(() => {
 		playSound(sequence[scalar - 1])
 	}, scalar * timeout));
@@ -76,22 +77,15 @@ function gameOn(color) {
 			p.innerText = `${level}, ${counter}`;
 			console.log(level, counter);
 
-			for (let i = 1; i <= level; i++) {
-				playSequence(i,600);
-			}
-			console.log(timeouts);
+			// Outer setTimeout to add a little bit more delay at the start of the next sequence of sounds (to avoid user confusion)
+			setTimeout(() => {
+				for (let i = 1; i <= level; i++) {
+					playSequence(i, 500);
+				}
+			}, 425);
 
-			// for (let i = 1; i <= level; i++) {
-			// 	timeouts.push(playSequence(i,600));
-			// }
+			// console.log(timeouts);
 
-
-			// Outer setTimeout to delay start of next sequence for a bit longer than the regular time between sequence sounds (avoid user confusion)
-			// setTimeout(() => {
-			// 	for (let i = 1; i <= level; i++) {
-			// 		timeouts.push(playSequence(i,600));
-			// 	}
-			// }, 1000);
 
 		}
 	} else {
