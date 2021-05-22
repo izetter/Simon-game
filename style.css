@@ -10,8 +10,9 @@ body {
 }
 
 p {
+	font-family: 'Arvo';
 	font-size: 2rem;
-	margin: calc(50vh - var(--btn-height) - 2 * var(--btn-margin) - 1rem) 0 1rem 0;
+	margin: calc(50vh - var(--btn-height) - 2 * var(--btn-margin) - 3rem) 0 1rem 0;
 	user-select: none;
 }
 
@@ -22,14 +23,6 @@ p {
 	margin: 0 auto;
 	width: calc(2 * var(--btn-width) + 8 * var(--btn-margin));
 	/* max-width: 90vh; */
-}
-
-.transparent {
-	color: transparent;
-}
-
-.grayed-out {
-	color: gainsboro;
 }
 
 .btn {
@@ -56,13 +49,36 @@ p {
 }
 
 .pressed {
-	/* box-shadow: 0 3px 4px 0 #DBEDF3; */
-	/* transform: scale(1.01); */
 	transition: all .1s ease-in-out;
-	/* border: 2px solid #ffc600; */
-	/* box-shadow: inset 0 0 1rem #2c230094; */
 	filter: brightness(1.8);
-	/* opacity: 0.99; */
+}
+
+.transparent {
+	color: transparent;
+}
+
+.grayed-out {
+	color: gainsboro;
+}
+
+button {
+	border: 2px solid rgb(84, 96, 105);
+	color: rgb(64, 75, 83);
+	background-color: transparent;
+	font-size: 1.1rem;
+	margin: 8px;
+	outline: transparent;
+	padding: 6px 12px;
+}
+
+button:disabled {
+	color: gainsboro;
+	border-color: gainsboro;
+}
+
+button:enabled:hover {
+    background-color: rgba(255, 105, 180, 0.87);
+	border-color: transparent;
 }
 
 
@@ -72,13 +88,27 @@ p {
 
 
 
-/* Media query for desktop */
+
+
+
+
+
+
+
+
+
+
+/* Media query for desktop'? */
 
 @media screen and (min-width: 1367px) {
 	#red {
 		/* background-color: black; */
 	}
 }
+
+
+/* CONSIDER ADDING A CONFETTI EFECT WHEN WINNING! */
+
 
 /* 
 MAYBE MAKE SQUARES A FIXED SIZE AND HAVE THEM ORDERED IN COLUMN WHEN ON VERTICAL MOBILE SCREEN (MEDIA QUERY FOR PORTRAIT ORIENTATION
@@ -88,3 +118,5 @@ LATER, START SHOWING THEM IN REGULAR SQUARE GRID, THEN ANIMATE THEM ACCOMODIATIN
 
 or maybe not
 */
+
+
