@@ -11,7 +11,7 @@ body {
 
 p {
 	font-family: 'Arvo';
-	font-size: 1.6rem;
+	font-size: 1.5rem;
 	margin: calc(50vh - var(--btn-height) - 2 * var(--btn-margin) - 3rem) 0 1rem 0;
 	user-select: none;
 	color: dimgrey;
@@ -65,7 +65,7 @@ button {
 	border: 2px solid rgb(84, 96, 105);
 	color: rgb(64, 75, 83);
 	background-color: transparent;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	margin: 8px;
 	outline: transparent;
 	padding: 6px 12px;

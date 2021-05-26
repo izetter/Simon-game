@@ -58,7 +58,7 @@ function gameOn(color) {
 		playSound(color);
 		counter++;
 		if (counter === level) {
-			if (level === 4) {		// Winning game condition
+			if (level === 2) {		// Winning game condition
 				winSound.volume = 0.1;
 				winSound.play();
 				hasWon = true;
@@ -84,6 +84,7 @@ function gameOn(color) {
 
 function gameOver() {
 	if (hasWon) {
+		throwConfetti();
 		p.innerText = 'You win!';
 		hasWon = false;
 	} else {
@@ -96,6 +97,33 @@ function gameOver() {
 	startGameBtn.disabled = false;
 	isGameInProgress = false;
 	counter = 0;
+}
+
+function throwConfetti() {
+
+	const duration = 2000
+	const endTime = Date.now() + duration;
+
+	const interval = setInterval(() => {
+
+		window.confetti({
+			particleCount: 15,
+			angle: 60,
+			spread: 50,
+			origin: { x: 0 }
+		});
+	
+		window.confetti({
+			particleCount: 15,
+			angle: 120,
+			spread: 50,
+			origin: { x: 1 }
+		});
+
+		if (Date.now() >= endTime) clearInterval(interval);
+
+	}, 100);
+
 }
 
 function playSound(color) {
@@ -133,3 +161,4 @@ function playSound(color) {
 		}
 	}
 }
+
