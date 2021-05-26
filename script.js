@@ -58,7 +58,7 @@ function gameOn(color) {
 		playSound(color);
 		counter++;
 		if (counter === level) {
-			if (level === 2) {		// Winning game condition
+			if (level === 10) {		// Winning game condition
 				winSound.volume = 0.1;
 				winSound.play();
 				hasWon = true;
@@ -161,4 +161,3 @@ function playSound(color) {
 		}
 	}
 }
-
