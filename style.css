@@ -11,9 +11,10 @@ body {
 
 p {
 	font-family: 'Arvo';
-	font-size: 2rem;
+	font-size: 1.6rem;
 	margin: calc(50vh - var(--btn-height) - 2 * var(--btn-margin) - 3rem) 0 1rem 0;
 	user-select: none;
+	color: dimgrey;
 }
 
 #container {
@@ -22,7 +23,6 @@ p {
 	justify-content: center;
 	margin: 0 auto;
 	width: calc(2 * var(--btn-width) + 8 * var(--btn-margin));
-	/* max-width: 90vh; */
 }
 
 .btn {

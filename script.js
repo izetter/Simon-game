@@ -4,13 +4,14 @@ const yellow = new Audio('./Sound3.mp3');
 const blue = new Audio('./Sound4.mp3');
 const errSound = new Audio('./error.wav');
 const winSound = new Audio('./win.mp3');
-const colors = ['green', 'red', 'yellow', 'blue'];
 const btns = document.querySelectorAll('.btn');
 const startGameBtn = document.querySelector('button');
+const p = document.querySelector('p');
+const colors = ['green', 'red', 'yellow', 'blue'];
 const sequence = [];
 const timeouts = [];
-const p = document.querySelector('p');
 let isGameInProgress = false;
+let hasWon = false;
 let counter = 0; 
 let level = 1;
 
@@ -26,11 +27,10 @@ function startGame() {
 	// Initialize
 	level = 1;
 	isGameInProgress = true;
-	// isFirstLoad = false;
 	startGameBtn.disabled = true;
 	p.classList.remove('grayed-out');
 	p.classList.remove('transparent');
-	p.innerText = level;
+	p.innerText = `Level ${level} of 10`;
 
 	// Reset and populate the sequence array
 	sequence.length = 0;
@@ -53,22 +53,23 @@ function playSequence(scalar, timeout) {
 
 function gameOn(color) {
 	p.classList.remove('transparent');
-	p.innerText = level;
+	p.innerText = `Level ${level} of 10`;
 	if (color === sequence[counter]) {
 		playSound(color);
 		counter++;
 		if (counter === level) {
-			if (level === 3) {		// Winning game condition
+			if (level === 4) {		// Winning game condition
 				winSound.volume = 0.1;
 				winSound.play();
+				hasWon = true;
 				gameOver();
 			} else {
 				level++;
 				counter = 0;
-				p.innerText = level;
-	
+				
 				// Outer setTimeout to add a little bit more delay at the start of the next sequence of sounds (to avoid user confusion)
 				setTimeout(() => {
+					p.innerText = `Level ${level} of 10`;
 					for (let i = 1; i <= level; i++) {
 						playSequence(i, 500);
 					}
@@ -82,16 +83,19 @@ function gameOn(color) {
 }
 
 function gameOver() {
-	startGameBtn.disabled = false;
-	startGameBtn.disabled = false;
-	p.classList.remove('transparent')
-	p.classList.add('grayed-out')
-	isGameInProgress = false;
-	counter = 0;
+	if (hasWon) {
+		p.innerText = 'You win!';
+		hasWon = false;
+	} else {
+		p.innerText = `Level ${level} of 10`;
+		p.classList.add('grayed-out')
+	}
 	for (let timeout of timeouts) {
 		clearTimeout(timeout);
 	}
-	p.innerText = level;
+	startGameBtn.disabled = false;
+	isGameInProgress = false;
+	counter = 0;
 }
 
 function playSound(color) {
