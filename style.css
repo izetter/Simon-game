@@ -2,11 +2,17 @@ html {
 	--btn-width: min(30vw, 30vh);
 	--btn-height: var(--btn-width);
 	--btn-margin: min(1.5vw, 1.5vh);
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
 }
 
 body {
 	text-align: center;
 	/* background-color: dimgrey; */
+	margin: 0;
 }
 
 p {
@@ -53,8 +59,8 @@ p {
 	filter: brightness(1.8);
 }
 
-.transparent {
-	color: transparent;
+.hidden {
+	visibility: hidden;
 }
 
 .grayed-out {
@@ -82,26 +88,42 @@ button:enabled:hover {
 }
 
 
-/********* bottom links *********/
+/********* footer *********/
+
+footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
 
 .name {
 	font: .9rem 'Courier New', Courier, monospace;
 	text-decoration: none;
 	opacity: .55;
-	position: absolute;
-	bottom: 7px;
-	left: 10px;
+	margin: 0 0 3px 6px;
 }
 
 .social-icon {
-    opacity: .35;
-    width: 30px;
-	position: absolute;
-	bottom: 10px;
-	right: 10px;
+	opacity: .35;
+	width: 30px;
+	margin-right: 6px;
 }
 
 .name:hover,
 .social-icon:hover {
 	opacity: .85;
 }
+
+@media screen and (max-width: 767px) {
+
+	footer {
+		justify-content: center;
+	}
+
+	.social-icon {
+		display: none;
+	}
+} 

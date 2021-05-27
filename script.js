@@ -14,7 +14,7 @@ let isGameInProgress = false;
 let hasWon = false;
 let counter = 0; 
 let level = 1;
-let finalLevel = 8;
+let finalLevel = 2;
 
 startGameBtn.addEventListener('click', () => startGame())
 
@@ -35,7 +35,7 @@ function startGame() {
 	isGameInProgress = true;
 	startGameBtn.disabled = true;
 	p.classList.remove('grayed-out');
-	p.classList.remove('transparent');
+	p.classList.remove('hidden');
 	p.innerText = `Level ${level} of ${finalLevel}`;
 
 	// Reset and populate the sequence array
@@ -60,7 +60,7 @@ function playSequence(scalar, timeout) {
 }
 
 function gameOn(color) {
-	p.classList.remove('transparent');
+	p.classList.remove('hidden');
 	p.innerText = `Level ${level} of ${finalLevel}`;
 	if (color === sequence[counter]) {
 		playSound(color);
@@ -119,14 +119,14 @@ function throwConfetti() {
 
 		window.confetti({
 			particleCount: 15,
-			angle: 60,
+			angle: 50,
 			spread: 50,
 			origin: { x: 0 }
 		});
 	
 		window.confetti({
 			particleCount: 15,
-			angle: 120,
+			angle: 130,
 			spread: 50,
 			origin: { x: 1 }
 		});
