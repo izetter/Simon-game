@@ -80,3 +80,28 @@ button:enabled:hover {
     background-color: rgba(255, 105, 180, 0.87);
 	border-color: transparent;
 }
+
+
+/********* bottom links *********/
+
+.name {
+	font: .9rem 'Courier New', Courier, monospace;
+	text-decoration: none;
+	opacity: .55;
+	position: absolute;
+	bottom: 7px;
+	left: 10px;
+}
+
+.social-icon {
+    opacity: .35;
+    width: 30px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.name:hover,
+.social-icon:hover {
+	opacity: .85;
+}
