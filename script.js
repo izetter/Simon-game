@@ -14,6 +14,7 @@ let isGameInProgress = false;
 let hasWon = false;
 let counter = 0; 
 let level = 1;
+let finalLevel = 8;
 
 startGameBtn.addEventListener('click', () => startGame())
 
@@ -35,11 +36,11 @@ function startGame() {
 	startGameBtn.disabled = true;
 	p.classList.remove('grayed-out');
 	p.classList.remove('transparent');
-	p.innerText = `Level ${level} of 10`;
+	p.innerText = `Level ${level} of ${finalLevel}`;
 
 	// Reset and populate the sequence array
 	sequence.length = 0;
-	for (let i = 1; i <= 10; i++) {
+	for (let i = 1; i <= finalLevel; i++) {
 		sequence.push(colors[Math.floor(Math.random() * colors.length)]);
 	}
 
@@ -60,13 +61,13 @@ function playSequence(scalar, timeout) {
 
 function gameOn(color) {
 	p.classList.remove('transparent');
-	p.innerText = `Level ${level} of 10`;
+	p.innerText = `Level ${level} of ${finalLevel}`;
 	if (color === sequence[counter]) {
 		playSound(color);
 		animateBtn(color);
 		counter++;
 		if (counter === level) {
-			if (level === 10) {		// Winning game condition
+			if (level === finalLevel) {
 				hasWon = true;
 				animateBtn(color);
 				playSound('win');
@@ -77,7 +78,7 @@ function gameOn(color) {
 				
 				// Outer setTimeout to add a little bit more delay at the start of the next sequence of sounds (to avoid user confusion)
 				setTimeout(() => {
-					p.innerText = `Level ${level} of 10`;
+					p.innerText = `Level ${level} of ${finalLevel}`;
 					for (let i = 1; i <= level; i++) {
 						playSequence(i, 500);
 					}
@@ -98,7 +99,7 @@ function gameOver() {
 		p.innerText = 'You win!';
 		hasWon = false;
 	} else {
-		p.innerText = `Level ${level} of 10`;
+		p.innerText = `Level ${level} of ${finalLevel}`;
 		p.classList.add('grayed-out')
 	}
 	for (let timeout of timeouts) {
