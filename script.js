@@ -14,9 +14,8 @@ let isGameInProgress = false;
 let hasWon = false;
 let counter = 0; 
 let level = 1;
-let finalLevel = 7;
 
-startGameBtn.addEventListener('click', () => startGame());
+startGameBtn.addEventListener('click', () => startGame())
 
 for (let btn of btns) {
 	btn.addEventListener('click', (evt) => {
@@ -40,7 +39,7 @@ function startGame() {
 
 	// Reset and populate the sequence array
 	sequence.length = 0;
-	for (let i = 1; i <= finalLevel; i++) {
+	for (let i = 1; i <= 10; i++) {
 		sequence.push(colors[Math.floor(Math.random() * colors.length)]);
 	}
 
@@ -67,7 +66,7 @@ function gameOn(color) {
 		animateBtn(color);
 		counter++;
 		if (counter === level) {
-			if (level === finalLevel) {
+			if (level === 10) {		// Winning game condition
 				hasWon = true;
 				animateBtn(color);
 				playSound('win');
@@ -134,17 +133,10 @@ function throwConfetti() {
 		if (Date.now() >= endTime) clearInterval(interval);
 
 	}, 100);
+
 }
 
 function playSound(str) {
-
-	// To avoid annoying sound overlapping on mobile when fast tapping tiles, stop sound playback if another sound is played before the former finishes playing.
-	const sounds = [green, red, yellow, blue, winSound, errSound];
-	for (let sound of sounds) {
-		sound.pause();
-		sound.currentTime = 0;
-	}
-
 	switch (str) {
 
 		case 'green': {
