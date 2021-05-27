@@ -19,7 +19,12 @@ startGameBtn.addEventListener('click', () => startGame())
 
 for (let btn of btns) {
 	btn.addEventListener('click', (evt) => {
-		isGameInProgress ? gameOn(evt.currentTarget.id) : playSound(evt.currentTarget.id);
+		if (isGameInProgress) {
+			gameOn(evt.currentTarget.id);
+		} else {
+			playSound(evt.currentTarget.id);
+			animateBtn(evt.currentTarget.id);
+		}
 	});
 }
 
@@ -41,13 +46,15 @@ function startGame() {
 	// Play first sound
 	setTimeout(() => {
 		playSound(sequence[0]);
+		animateBtn(sequence[0]);
 	}, 450);
 }
 
 function playSequence(scalar, timeout) {
 	// Store timeouts in an array for easy clearing
 	timeouts.push(setTimeout(() => {
-		playSound(sequence[scalar - 1])
+		playSound(sequence[scalar - 1]);
+		animateBtn(sequence[scalar - 1]);
 	}, scalar * timeout));
 }
 
@@ -56,12 +63,13 @@ function gameOn(color) {
 	p.innerText = `Level ${level} of 10`;
 	if (color === sequence[counter]) {
 		playSound(color);
+		animateBtn(color);
 		counter++;
 		if (counter === level) {
 			if (level === 10) {		// Winning game condition
-				winSound.volume = 0.1;
-				winSound.play();
 				hasWon = true;
+				animateBtn(color);
+				playSound('win');
 				gameOver();
 			} else {
 				level++;
@@ -77,12 +85,14 @@ function gameOn(color) {
 			}
 		}
 	} else {
-		errSound.play();
+		animateBtn(color);
+		playSound('error');
 		gameOver();
 	}
 }
 
 function gameOver() {
+
 	if (hasWon) {
 		throwConfetti();
 		p.innerText = 'You win!';
@@ -126,15 +136,8 @@ function throwConfetti() {
 
 }
 
-function playSound(color) {
-
-	// Button animation
-	let btn = document.querySelector(`#${color}`);
-	btn.classList.add('pressed');
-	setTimeout(() => btn.classList.remove('pressed'), 150);
-
-	// Sound playback
-	switch (color) {
+function playSound(str) {
+	switch (str) {
 
 		case 'green': {
 			green.currentTime = 0;
@@ -159,5 +162,22 @@ function playSound(color) {
 			blue.play();
 			break;
 		}
+
+		case 'win': {
+			winSound.volume = 0.1;
+			winSound.play();
+			break;
+		}
+
+		case 'error': {
+			errSound.play();
+			break;
+		}
 	}
+}
+
+function animateBtn(id) {
+	let btn = document.querySelector(`#${id}`);
+	btn.classList.add('pressed');
+	setTimeout(() => btn.classList.remove('pressed'), 150);
 }
