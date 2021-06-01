@@ -14,7 +14,7 @@ let isGameInProgress = false;
 let hasWon = false;
 let counter = 0; 
 let level = 1;
-let finalLevel = 2;
+let finalLevel = 8;
 
 startGameBtn.addEventListener('click', () => startGame())
 
@@ -80,7 +80,7 @@ function gameOn(color) {
 				setTimeout(() => {
 					p.innerText = `Level ${level} of ${finalLevel}`;
 					for (let i = 1; i <= level; i++) {
-						playSequence(i, 500);
+						playSequence(i, 400);
 					}
 				}, 450);
 			}
@@ -119,14 +119,14 @@ function throwConfetti() {
 
 		window.confetti({
 			particleCount: 15,
-			angle: 50,
+			angle: 60,
 			spread: 50,
 			origin: { x: 0 }
 		});
 	
 		window.confetti({
 			particleCount: 15,
-			angle: 130,
+			angle: 120,
 			spread: 50,
 			origin: { x: 1 }
 		});
