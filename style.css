@@ -10,17 +10,18 @@ html {
 }
 
 body {
-	text-align: center;
 	/* background-color: dimgrey; */
+	background-color: #f1f1f1;
 	margin: 0;
+	text-align: center;
 }
 
 p {
+	color: dimgrey;
 	font-family: 'Arvo';
 	font-size: 1.5rem;
 	margin: calc(50vh - var(--btn-height) - 2 * var(--btn-margin) - 3rem) 0 1rem 0;
 	user-select: none;
-	color: dimgrey;
 }
 
 #container {
@@ -32,10 +33,11 @@ p {
 }
 
 .btn {
-	height: var(--btn-height);
-	width: var(--btn-width);
-	margin: var(--btn-margin);
 	box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, .2);
+	cursor: pointer;
+	height: var(--btn-height);
+	margin: var(--btn-margin);
+	width: var(--btn-width);
 }
 
 #green {
@@ -55,8 +57,8 @@ p {
 }
 
 .pressed {
-	transition: all .1s ease-in-out;
 	filter: brightness(1.8);
+	transition: all .1s ease-in-out;
 }
 
 .hidden {
@@ -68,9 +70,9 @@ p {
 }
 
 button {
+	background-color: transparent;
 	border: 2px solid rgb(84, 96, 105);
 	color: rgb(64, 75, 83);
-	background-color: transparent;
 	font-size: 1rem;
 	margin: 8px;
 	outline: transparent;
@@ -78,12 +80,12 @@ button {
 }
 
 button:disabled {
-	color: gainsboro;
 	border-color: gainsboro;
+	color: gainsboro;
 }
 
 button:enabled:hover {
-    background-color: rgba(255, 105, 180, 0.87);
+   background-color: rgba(255, 105, 180, 0.87);
 	border-color: transparent;
 }
 
@@ -91,25 +93,25 @@ button:enabled:hover {
 /********* footer *********/
 
 footer {
-	position: fixed;
-	width: 100%;
+	align-items: flex-end;
 	bottom: 0;
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
+	position: fixed;
+	width: 100%;
 }
 
 .name {
 	font: .9rem 'Courier New', Courier, monospace;
-	text-decoration: none;
-	opacity: .55;
 	margin: 0 0 3px 6px;
+	opacity: .55;
+	text-decoration: none;
 }
 
 .social-icon {
+	margin-right: 6px;
 	opacity: .35;
 	width: 30px;
-	margin-right: 6px;
 }
 
 .name:hover,
